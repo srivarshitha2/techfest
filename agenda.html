@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - TechFest 2025</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>TechFest 2025</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="speakers.html" class="nav-link">Speakers</a></li>
+                    <li><a href="agenda.html" class="nav-link">Agenda</a></li>
+                    <li><a href="venue.html" class="nav-link">Venue</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Conference Agenda</h1>
+                <p>Explore the exciting lineup of sessions, workshops, and networking opportunities</p>
+            </div>
+        </section>
+
+        <section class="agenda-section">
+            <div class="container">
+                <div class="agenda-tabs">
+                    <button class="agenda-tab active" data-day="day1">Day 1 - June 10</button>
+                    <button class="agenda-tab" data-day="day2">Day 2 - June 11</button>
+                    <button class="agenda-tab" data-day="day3">Day 3 - June 12</button>
+                </div>
+
+                <div class="agenda-content active" id="day1">
+                    <div class="agenda-item keynote">
+                        <div class="agenda-time">9:00 AM - 10:30 AM</div>
+                        <div class="agenda-details">
+                            <h3>Opening Keynote</h3>
+                            <p class="agenda-speaker">Dr. Elena Rodriguez, Director, MIT AI Lab</p>
+                            <p class="agenda-description">"The Ethical Frontiers of Artificial Intelligence" - Exploring the moral implications of advanced AI systems.</p>
+                            <span class="agenda-location">Main Auditorium</span>
+                        </div>
+                    </div>
+
+                    <div class="agenda-item">
+                        <div class="agenda-time">11:00 AM - 12:30 PM</div>
+                        <div class="agenda-details">
+                            <h3>Quantum Computing Workshop</h3>
+                            <p class="agenda-speaker">Marcus Johnson, CTO, QuantumLeap</p>
+                            <p class="agenda-description">Hands-on session demonstrating quantum algorithms and their practical applications.</p>
+                            <span class="agenda-location">Room A</span>
+                        </div>
+                    </div>
+
+                    <div class="agenda-item break">
+                        <div class="agenda-time">12:30 PM - 1:30 PM</div>
+                        <div class="agenda-details">
+                            <h3>Lunch Break</h3>
+                            <p class="agenda-description">Networking lunch with fellow attendees and speakers.</p>
+                            <span class="agenda-location">Dining Hall</span>
+                        </div>
+                    </div>
+
+                    <div class="agenda-item">
+                        <div class="agenda-time">1:30 PM - 3:00 PM</div>
+                        <div class="agenda-details">
+                            <h3>Panel Discussion: The Future of Work</h3>
+                            <p class="agenda-speaker">Moderated by Sarah Chen with industry leaders</p>
+                            <p class="agenda-description">How emerging technologies are transforming workplaces and job markets.</p>
+                            <span class="agenda-location">Main Auditorium</span>
+                        </div>
+                    </div>
+
+                    <div class="agenda-item">
+                        <div class="agenda-time">3:30 PM - 5:00 PM</div>
+                        <div class="agenda-details">
+                            <h3>Neural Interfaces Deep Dive</h3>
+                            <p class="agenda-speaker">Dr. Amanda Zhang, Chief AI Scientist, NeuroTech</p>
+                            <p class="agenda-description">Technical exploration of current breakthroughs in brain-computer interfaces.</p>
+                            <span class="agenda-location">Room B</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agenda-content" id="day2">
+                    <div class="agenda-item keynote">
+                        <div class="agenda-time">10:30 AM - 12:00 PM</div>
+                        <div class="agenda-details">
+                            <h3>Morning Keynote</h3>
+                            <p class="agenda-speaker">Michael Thompson, CEO, FutureTech</p>
+                            <p class="agenda-description">"Disruptive Technologies Shaping the Next Decade" - A visionary look at emerging tech trends.</p>
+                            <span class="agenda-location">Main Auditorium</span>
+                        </div>
+                    </div>
+
+                    <div class="agenda-item">
+                        <div class="agenda-time">1:00 PM - 2:30 PM</div>
+                        <div class="agenda-details">
+                            <h3>Blockchain in Enterprise</h3>
+                            <p class="agenda-speaker">James Wilson, Founder, Blockchain Ventures</p>
+                            <p class="agenda-description">Case studies of blockchain implementation in large organizations.</p>
+                            <span class="agenda-location">Room C</span>
+                        </div>
+                    </div>
+
+                    <div class="agenda-item">
+                        <div class="agenda-time">3:00 PM - 4:30 PM</div>
+                        <div class="agenda-details">
+                            <h3>AR/VR Showcase</h3>
+                            <p class="agenda-speaker">David Kim, Head of Product, MetaVerse Inc.</p>
+                            <p class="agenda-description">Demonstration of cutting-edge augmented and virtual reality applications.</p>
+                            <span class="agenda-location">Innovation Hall</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agenda-content" id="day3">
+                    <div class="agenda-item">
+                        <div class="agenda-time">9:30 AM - 11:00 AM</div>
+                        <div class="agenda-details">
+                            <h3>Zero Trust Security Workshop</h3>
+                            <p class="agenda-speaker">Priya Patel, Cybersecurity Architect, SecureNet</p>
+                            <p class="agenda-description">Practical implementation strategies for modern security frameworks.</p>
+                            <span class="agenda-location">Room A</span>
+                        </div>
+                    </div>
+
+                    <div class="agenda-item">
+                        <div class="agenda-time">11:30 AM - 1:00 PM</div>
+                        <div class="agenda-details">
+                            <h3>Sustainable Tech Roundtable</h3>
+                            <p class="agenda-speaker">Industry leaders in green technology</p>
+                            <p class="agenda-description">Collaborative discussion on environmentally conscious technology solutions.</p>
+                            <span class="agenda-location">Room B</span>
+                        </div>
+                    </div>
+
+                    <div class="agenda-item keynote">
+                        <div class="agenda-time">2:00 PM - 3:30 PM</div>
+                        <div class="agenda-details">
+                            <h3>Closing Keynote</h3>
+                            <p class="agenda-speaker">TechFest Organizing Committee</p>
+                            <p class="agenda-description">"Where Do We Go From Here?" - Reflections and future directions.</p>
+                            <span class="agenda-location">Main Auditorium</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="download-section">
+            <div class="container">
+                <div class="download-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h2>Download Full Agenda</h2>
+                    <p>Get the complete schedule with all sessions, speakers, and locations in PDF format.</p>
+                    <a href="#" class="cta-button">Download PDF</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>TechFest 2025</h4>
+                <p>The premier technology conference for innovators and industry leaders.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul style="display: grid;grid-template-columns: 100px 300px;">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="speakers.html">Speakers</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="venue.html">Venue</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TechFest. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
