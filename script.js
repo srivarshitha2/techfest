@@ -104,6 +104,135 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.style.backdropFilter = 'none';
         }
     });
+
+    // Counter animation for homepage stats
+    const counters = document.querySelectorAll('.counter-number');
+    if (counters.length > 0) {
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                let count = +counter.innerText;
+                const increment = Math.ceil(target / 100);
+                if (count < target) {
+                    counter.innerText = Math.min(count + increment, target);
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
+        });
+    }
+});
+
+// === User Registration ===
+document.addEventListener('DOMContentLoaded', function() {
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+            if (users.find(u => u.username === username || u.email === email)) {
+                showNotification('User already exists!', 'error');
+                return;
+            }
+            users.push({ username, email, password });
+            localStorage.setItem('users', JSON.stringify(users));
+            showNotification('Registration successful! You can now login.', 'success');
+            registerForm.reset();
+        });
+    }
+
+    // === User Login ===
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const loginUser = document.getElementById('loginUser').value.trim();
+            const loginPassword = document.getElementById('loginPassword').value;
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => (u.username === loginUser || u.email === loginUser) && u.password === loginPassword);
+            if (user) {
+                localStorage.setItem('loggedInUser', JSON.stringify(user));
+                showNotification('Login successful!', 'success');
+                setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+            } else {
+                showNotification('Invalid credentials!', 'error');
+            }
+        });
+    }
+
+    // === Admin Registration ===
+    const adminRegisterForm = document.getElementById('adminRegisterForm');
+    if (adminRegisterForm) {
+        adminRegisterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('adminUsername').value.trim();
+            const email = document.getElementById('adminEmail').value.trim();
+            const password = document.getElementById('adminPassword').value;
+            let admins = JSON.parse(localStorage.getItem('admins') || '[]');
+            if (admins.find(a => a.username === username || a.email === email)) {
+                showNotification('Admin already exists!', 'error');
+                return;
+            }
+            admins.push({ username, email, password });
+            localStorage.setItem('admins', JSON.stringify(admins));
+            showNotification('Admin registration successful! You can now login.', 'success');
+            adminRegisterForm.reset();
+        });
+    }
+
+    // === Admin Login ===
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    if (adminLoginForm) {
+        adminLoginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const loginUser = document.getElementById('adminLoginUser').value.trim();
+            const loginPassword = document.getElementById('adminLoginPassword').value;
+            let admins = JSON.parse(localStorage.getItem('admins') || '[]');
+            const admin = admins.find(a => (a.username === loginUser || a.email === loginUser) && a.password === loginPassword);
+            if (admin) {
+                localStorage.setItem('loggedInAdmin', JSON.stringify(admin));
+                showNotification('Admin login successful!', 'success');
+                setTimeout(() => { window.location.href = 'admin.html'; }, 1000);
+            } else {
+                showNotification('Invalid admin credentials!', 'error');
+            }
+        });
+    }
+
+    // === Admin Dashboard ===
+    if (window.location.pathname.endsWith('admin.html')) {
+        // Check if admin is logged in
+        const loggedInAdmin = localStorage.getItem('loggedInAdmin');
+        if (!loggedInAdmin) {
+            window.location.href = 'admin_login.html';
+        }
+        // Show user count and list
+        const userCount = document.getElementById('userCount');
+        const userList = document.getElementById('userList');
+        let users = JSON.parse(localStorage.getItem('users') || '[]');
+        if (userCount) userCount.textContent = users.length;
+        if (userList) {
+            userList.innerHTML = '';
+            users.forEach((u, i) => {
+                const li = document.createElement('li');
+                li.textContent = `${i+1}. ${u.username} (${u.email})`;
+                userList.appendChild(li);
+            });
+        }
+        // Logout button
+        const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+        if (adminLogoutBtn) {
+            adminLogoutBtn.addEventListener('click', function() {
+                localStorage.removeItem('loggedInAdmin');
+                window.location.href = 'admin_login.html';
+            });
+        }
+    }
 });
 
 // Form Validation Functions
@@ -332,4 +461,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     images.forEach(img => imageObserver.observe(img));
+});
+
+document.addEventListener('click', function(event) {
+    const dropdowns = document.querySelectorAll('.dropdown-content');
+    if (!event.target.closest('.dropdown')) {
+        dropdowns.forEach(dd => dd.style.display = 'none');
+    } else {
+        dropdowns.forEach(dd => dd.style.display = '');
+    }
 });

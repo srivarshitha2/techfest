@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="form-card">
+        <h2 style="text-align:center;color:#007bff;"><i class="fas fa-user-shield"></i> Admin Registration</h2>
+        <p style="text-align:center; color:#555; margin-bottom:18px;">Create your admin account</p>
+        <form id="adminRegisterForm">
+            <label for="adminUsername">Username:</label>
+            <input type="text" id="adminUsername" name="adminUsername" required placeholder="Enter admin username">
+            <label for="adminEmail">Email:</label>
+            <input type="email" id="adminEmail" name="adminEmail" required placeholder="Enter email">
+            <label for="adminPassword">Password:</label>
+            <input type="password" id="adminPassword" name="adminPassword" required placeholder="Enter password">
+            <button type="submit"><i class="fas fa-user-shield"></i> Register</button>
+        </form>
+        <p id="adminRegisterMessage"></p>
+        <div style="text-align:center;margin-top:10px;">
+            <a href="admin_login.html" style="color:#007bff;">Already have an admin account? Login</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

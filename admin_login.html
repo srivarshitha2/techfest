@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="form-card">
+        <h2 style="text-align:center;color:#007bff;"><i class="fas fa-user-shield"></i> Admin Login</h2>
+        <p style="text-align:center; color:#555; margin-bottom:18px;">Login to the admin portal</p>
+        <form id="adminLoginForm">
+            <label for="adminLoginUser">Username or Email:</label>
+            <input type="text" id="adminLoginUser" name="adminLoginUser" required placeholder="Enter admin username or email">
+            <label for="adminLoginPassword">Password:</label>
+            <input type="password" id="adminLoginPassword" name="adminLoginPassword" required placeholder="Enter password">
+            <button type="submit"><i class="fas fa-user-shield"></i> Login</button>
+        </form>
+        <p id="adminLoginMessage"></p>
+        <div style="text-align:center;margin-top:10px;">
+            <a href="admin_register.html" style="color:#007bff;">Don't have an admin account? Register</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

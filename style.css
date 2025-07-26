@@ -97,6 +97,8 @@ body {
 /* Hero Section */
 .hero-section {
     background: linear-gradient(135deg, #f5f5f5 0%, #e8f4ff 100%);
+    background-image: url("17973908.jpg");
+     background-size: 100vw 100vh;
     padding: 120px 60px 80px;
     text-align: center;
     margin-top: 70px;
@@ -237,6 +239,8 @@ body {
 /* Page Header */
 .page-header {
     background: linear-gradient(135deg, #f5f5f5 0%, #e8f4ff 100%);
+    background-image: url("17973908.jpg");
+    background-size: 100vw 100vh;
     padding: 120px 0 80px;
     text-align: center;
     margin-top: 70px;
@@ -1418,4 +1422,280 @@ button:active::before {
     .gallery-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Add button styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn:hover {
+    background: #0056b3;
+}
+.auth-buttons {
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Navbar Auth Dropdown */
+.nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropbtn {
+    background: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.dropbtn:hover, .dropbtn:focus {
+    background: #0056b3;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #fff;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    z-index: 1000;
+    border-radius: 6px;
+    overflow: hidden;
+    right: 0;
+    animation: fadeIn 0.3s;
+}
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+}
+.dropdown-content a:hover {
+    background: #f1f1f1;
+}
+.dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Attractive Form Styles */
+form {
+    max-width: 400px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 32px 28px 24px 28px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    animation: popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #222;
+}
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 7px;
+    font-size: 16px;
+    background: #f9f9f9;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+form input:focus {
+    border: 1.5px solid #007bff;
+    outline: none;
+    box-shadow: 0 0 0 2px #007bff22;
+    background: #fff;
+}
+form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.10);
+}
+form button[type="submit"]:hover {
+    background: linear-gradient(90deg, #0056b3 60%, #007bff 100%);
+    transform: translateY(-2px) scale(1.03);
+}
+#registerMessage, #loginMessage, #adminRegisterMessage, #adminLoginMessage {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 15px;
+    min-height: 24px;
+    transition: color 0.2s;
+}
+
+/* Admin Dashboard Styles */
+.admin-dashboard {
+    display: flex;
+    min-height: 80vh;
+    background: #f4f8fb;
+    animation: fadeIn 0.7s;
+}
+.admin-sidebar {
+    width: 220px;
+    background: linear-gradient(180deg, #007bff 70%, #00c6ff 100%);
+    color: #fff;
+    padding: 32px 18px 18px 18px;
+    border-radius: 0 18px 18px 0;
+    box-shadow: 2px 0 12px rgba(0,123,255,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 100%;
+}
+.admin-sidebar h2 {
+    font-size: 22px;
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+.admin-sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+.admin-sidebar li {
+    margin-bottom: 16px;
+}
+.admin-sidebar a, .admin-sidebar button {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    padding: 8px 0;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.admin-sidebar a.active, .admin-sidebar a:hover, .admin-sidebar button:hover {
+    background: rgba(255,255,255,0.13);
+}
+.admin-main {
+    flex: 1;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.admin-title {
+    font-size: 32px;
+    color: #007bff;
+    margin-bottom: 32px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    animation: slideInLeft 0.7s;
+}
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+.admin-cards {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+.admin-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,123,255,0.07);
+    padding: 28px 36px;
+    min-width: 220px;
+    text-align: center;
+    animation: popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.admin-card h3 {
+    color: #007bff;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.admin-stat {
+    font-size: 36px;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+}
+.admin-users {
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,123,255,0.05);
+    padding: 24px 28px;
+    margin-top: 12px;
+    animation: fadeIn 0.7s;
+}
+.admin-users h3 {
+    color: #007bff;
+    margin-bottom: 12px;
+}
+#userList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#userList li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 16px;
+    color: #333;
+    transition: background 0.2s;
+}
+#userList li:last-child {
+    border-bottom: none;
+}
+#userList li:hover {
+    background: #f4f8fb;
+}
+
+/* Form Card Layout */
+.form-card {
+    max-width: 440px;
+    margin: 60px auto 0 auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,123,255,0.13);
+    padding: 36px 36px 28px 36px;
+    animation: popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
 }

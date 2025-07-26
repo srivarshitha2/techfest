@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="form-card">
+        <h2 style="text-align:center;color:#007bff;"><i class="fas fa-sign-in-alt"></i> User Login</h2>
+        <p style="text-align:center; color:#555; margin-bottom:18px;">Login to your TechFest account</p>
+        <form id="loginForm">
+            <label for="loginUser">Username or Email:</label>
+            <input type="text" id="loginUser" name="loginUser" required placeholder="Enter username or email">
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" name="loginPassword" required placeholder="Enter password">
+            <button type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+        </form>
+        <p id="loginMessage"></p>
+        <div style="text-align:center;margin-top:10px;">
+            <a href="register.html" style="color:#007bff;">Don't have an account? Register</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
