@@ -39,13 +39,7 @@ body {
     align-items: center;
     height: 70px;
 }
-<<<<<<< HEAD
-  
-       
-        
-=======
->>>>>>> ab0e85dcfa86419ba5a96c300dfc4a50e112417d
-        
+
         .payment-container {
             background-color: white;
             border-radius: 10px;
@@ -432,6 +426,7 @@ body {
     line-height: 1.6;
 }
 
+
 /* Page Header */
 .page-header {
     background: linear-gradient(135deg, #f5f5f5 0%, #e8f4ff 100%);
@@ -664,6 +659,7 @@ body {
     color: #666666;
     margin: 0;
 }
+
 
 /* Contact Form */
 .contact-form-wrapper {

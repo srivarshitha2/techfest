@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (user) {
                 localStorage.setItem('loggedInUser', JSON.stringify(user));
                 showNotification('Login successful!', 'success');
-                setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+                setTimeout(() => { window.location.href = 'payment.html'; }, 1000);
             } else {
                 showNotification('Invalid credentials!', 'error');
             }
@@ -470,4 +470,56 @@ document.addEventListener('click', function(event) {
     } else {
         dropdowns.forEach(dd => dd.style.display = '');
     }
+});
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const universityContact = document.getElementById('universityContact').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const messageElement = document.getElementById('registerMessage');
+    
+    // Simple validation
+    if (password !== confirmPassword) {
+        messageElement.textContent = "Passwords do not match!";
+        messageElement.style.color = "red";
+        return;
+    }
+    
+    // Here you would typically send data to a server
+    // For this example, we'll simulate a successful registration
+    
+    // Simulate API call with setTimeout
+    messageElement.textContent = "Registration successful! Redirecting to payment...";
+    messageElement.style.color = "green";
+    
+    setTimeout(() => {
+        // Redirect to payment page after 2 seconds
+        window.location.href = "payment.html"; // Change this to your payment page URL
+    }, 2000);
+    
+    // In a real application, you would:
+    // 1. Send data to your backend API
+    // 2. On success response, redirect to payment
+    // fetch('/api/register', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ username, email, universityContact, password })
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //     if (data.success) {
+    //         window.location.href = "payment.html";
+    //     } else {
+    //         messageElement.textContent = data.message || "Registration failed";
+    //         messageElement.style.color = "red";
+    //     }
+    // })
+    // .catch(error => {
+    //     messageElement.textContent = "An error occurred during registration";
+    //     messageElement.style.color = "red";
+    // });
 });
