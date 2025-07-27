@@ -5,65 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Page</title>
     <style>
-        /* CSS for the payment page */
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
             font-family: 'Arial', sans-serif;
         }
         
         body {
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 20px;
+            background-color: #f5f7fa;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 20px;
         }
         
         .payment-container {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 500px;
             padding: 30px;
+            text-align: center;
         }
         
         .payment-header {
-            text-align: center;
             margin-bottom: 30px;
         }
         
         .payment-header h1 {
-            color: #333;
-            margin: 0;
             font-size: 24px;
+            color: #333;
+            margin-bottom: 8px;
         }
         
         .payment-header p {
             color: #666;
-            margin: 5px 0 0;
+            font-size: 14px;
         }
         
         .payment-methods {
-            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
         }
         
         .payment-method {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            border: 1px solid #ddd;
+            border: 1px solid #e0e0e0;
             border-radius: 8px;
-            margin-bottom: 10px;
+            padding: 15px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            width: 48%;
+            text-align: center;
         }
         
         .payment-method:hover {
             border-color: #4a90e2;
-            background-color: #f8faff;
         }
         
         .payment-method.active {
@@ -74,27 +75,23 @@
         .payment-method img {
             width: 40px;
             height: 40px;
-            margin-right: 15px;
+            margin-bottom: 10px;
         }
         
-        .payment-method .method-info {
-            flex: 1;
-        }
-        
-        .payment-method .method-info h3 {
-            margin: 0;
+        .method-info h3 {
             font-size: 16px;
             color: #333;
+            margin-bottom: 5px;
         }
         
-        .payment-method .method-info p {
-            margin: 3px 0 0;
-            font-size: 13px;
+        .method-info p {
+            font-size: 12px;
             color: #666;
         }
         
         .payment-form {
             display: none;
+            text-align: center;
         }
         
         .payment-form.active {
@@ -103,22 +100,23 @@
         
         .form-group {
             margin-bottom: 20px;
+            text-align: left;
         }
         
         label {
             display: block;
             margin-bottom: 8px;
-            color: #555;
-            font-weight: bold;
             font-size: 14px;
+            color: #555;
+            font-weight: 500;
         }
         
         input {
             width: 100%;
-            padding: 12px;
+            padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 14px;
             transition: border-color 0.3s;
         }
         
@@ -127,48 +125,17 @@
             outline: none;
         }
         
-        .card-icons {
-            display: flex;
-            gap: 10px;
-            margin-top: 5px;
-        }
-        
-        .card-icon {
-            width: 40px;
-            height: 25px;
-            background-color: #f0f0f0;
-            border-radius: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-            color: #888;
+        input.invalid {
+            border-color: #e74c3c;
         }
         
         .row {
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
         
         .row .form-group {
             flex: 1;
-        }
-        
-        .pay-button {
-            width: 100%;
-            padding: 14px;
-            background-color: #4a90e2;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .pay-button:hover {
-            background-color: #3a7bc8;
         }
         
         .error {
@@ -178,37 +145,78 @@
             display: none;
         }
         
-        input.invalid {
-            border-color: #e74c3c;
-        }
-        
-        .secure-payment {
+        .card-icons {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-            color: #666;
-            font-size: 14px;
+            gap: 10px;
+            margin-top: 10px;
         }
         
-        .secure-payment svg {
-            margin-right: 8px;
+        .card-icon {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #555;
         }
         
         .upi-id-input {
             position: relative;
         }
         
-        .upi-id-input input {
-            padding-left: 40px;
-        }
-        
         .upi-icon {
             position: absolute;
-            left: 12px;
-            top: 38px;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
             width: 20px;
             height: 20px;
+        }
+        
+        #upi-id {
+            padding-left: 45px;
+        }
+        
+        .pay-button {
+            width: 100%;
+            padding: 14px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .pay-button:hover {
+            background-color: #3a7bc8;
+        }
+        
+        .secure-payment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 25px;
+            color: #4a90e2;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 480px) {
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .payment-method {
+                width: 100%;
+            }
+            
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
         }
     </style>
 </head>
@@ -229,7 +237,7 @@
             </div>
             
             <div class="payment-method" data-method="phonepe">
-                <img src="phone pay.png" alt="PhonePe" style="object-fit: contain;">
+                <img src="https://cdn-icons-png.flaticon.com/512/825/825454.png" alt="PhonePe" style="object-fit: contain;">
                 <div class="method-info">
                     <h3>PhonePe</h3>
                     <p>Pay using your PhonePe UPI ID or QR Code</p>
@@ -439,15 +447,6 @@
             function processPhonePePayment(upiId) {
                 // PhonePe payment processing
                 alert(`Initiating PhonePe payment for UPI ID: ${upiId}\n\nIn a real implementation, this would:\n1. Generate a payment request\n2. Redirect to PhonePe app or show a payment link\n3. Handle the payment callback`);
-                
-                // In a real implementation, you would:
-                // 1. Generate a unique transaction ID
-                // 2. Create a payment request to your backend
-                // 3. Your backend would integrate with PhonePe API
-                // 4. Redirect user to PhonePe app or show payment link
-                
-                // For testing purposes, you can use PhonePe's sandbox:
-                // window.location.href = `phonepe://pay?pa=${upiId}&pn=YourMerchantName&mc=YOUR_MERCHANT_CODE&tid=${Date.now()}&tn=PaymentForYourService&am=${amount}&cu=INR`;
             }
         });
     </script>
