@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        /* CSS for the payment page */
+        * {
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .payment-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+        }
+        
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .payment-header h1 {
+            color: #333;
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .payment-header p {
+            color: #666;
+            margin: 5px 0 0;
+        }
+        
+        .payment-methods {
+            margin-bottom: 20px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method:hover {
+            border-color: #4a90e2;
+            background-color: #f8faff;
+        }
+        
+        .payment-method.active {
+            border-color: #4a90e2;
+            background-color: #f0f7ff;
+        }
+        
+        .payment-method img {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+        
+        .payment-method .method-info {
+            flex: 1;
+        }
+        
+        .payment-method .method-info h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .payment-method .method-info p {
+            margin: 3px 0 0;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .payment-form {
+            display: none;
+        }
+        
+        .payment-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+        
+        .card-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .card-icon {
+            width: 40px;
+            height: 25px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .row .form-group {
+            flex: 1;
+        }
+        
+        .pay-button {
+            width: 100%;
+            padding: 14px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .pay-button:hover {
+            background-color: #3a7bc8;
+        }
+        
+        .error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        input.invalid {
+            border-color: #e74c3c;
+        }
+        
+        .secure-payment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .secure-payment svg {
+            margin-right: 8px;
+        }
+        
+        .upi-id-input {
+            position: relative;
+        }
+        
+        .upi-id-input input {
+            padding-left: 40px;
+        }
+        
+        .upi-icon {
+            position: absolute;
+            left: 12px;
+            top: 38px;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            <h1>Complete Your Payment</h1>
+            <p>Choose your preferred payment method</p>
+        </div>
+        
+        <div class="payment-methods">
+            <div class="payment-method active" data-method="credit-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Credit Card">
+                <div class="method-info">
+                    <h3>Credit/Debit Card</h3>
+                    <p>Pay using Visa, Mastercard, Rupay, etc.</p>
+                </div>
+            </div>
+            
+            <div class="payment-method" data-method="phonepe">
+                <img src="phone pay.png" alt="PhonePe" style="object-fit: contain;">
+                <div class="method-info">
+                    <h3>PhonePe</h3>
+                    <p>Pay using your PhonePe UPI ID or QR Code</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Credit Card Form -->
+        <form id="credit-card-form" class="payment-form active">
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                <div class="error" id="card-number-error">Please enter a valid card number</div>
+                <div class="card-icons">
+                    <div class="card-icon">VISA</div>
+                    <div class="card-icon">MC</div>
+                    <div class="card-icon">AMEX</div>
+                    <div class="card-icon">DISC</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="card-name">Name on Card</label>
+                <input type="text" id="card-name" placeholder="John Doe">
+                <div class="error" id="card-name-error">Please enter the name on your card</div>
+            </div>
+            
+            <div class="row">
+                <div class="form-group">
+                    <label for="expiry-date">Expiry Date</label>
+                    <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5">
+                    <div class="error" id="expiry-date-error">Please enter a valid expiry date</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123" maxlength="4">
+                    <div class="error" id="cvv-error">Please enter a valid CVV</div>
+                </div>
+            </div>
+            
+            <button type="submit" class="pay-button">Pay Now</button>
+        </form>
+        
+        <!-- PhonePe Form -->
+        <form id="phonepe-form" class="payment-form">
+            <div class="form-group">
+                <label for="upi-id">PhonePe UPI ID</label>
+                <div class="upi-id-input">
+                    <img src="https://cdn-icons-png.flaticon.com/512/825/825454.png" class="upi-icon" alt="UPI">
+                    <input type="text" id="upi-id" placeholder="yournumber@ybl or yournumber@axl">
+                    <div class="error" id="upi-id-error">Please enter a valid UPI ID</div>
+                </div>
+            </div>
+            
+            <div class="form-group" style="text-align: center; margin: 30px 0;">
+                <p style="margin: 0; color: #666;">- OR -</p>
+            </div>
+            
+            <div class="form-group" style="text-align: center;">
+                <div style="background-color: #f8f8f8; padding: 20px; border-radius: 8px;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=dummy-phonepe-payment" alt="PhonePe QR Code" style="width: 150px; height: 150px;">
+                    <p style="margin-top: 10px; color: #666;">Scan this QR code with PhonePe app</p>
+                </div>
+            </div>
+            
+            <button type="submit" class="pay-button" style="background-color: #5f259f;">Pay with PhonePe</button>
+        </form>
+        
+        <div class="secure-payment">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            Secure Payment
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for payment processing and validation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Payment method selection
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            const paymentForms = document.querySelectorAll('.payment-form');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    // Remove active class from all methods
+                    paymentMethods.forEach(m => m.classList.remove('active'));
+                    // Add active class to clicked method
+                    this.classList.add('active');
+                    
+                    // Hide all forms
+                    paymentForms.forEach(form => form.classList.remove('active'));
+                    // Show corresponding form
+                    const methodName = this.getAttribute('data-method');
+                    document.getElementById(`${methodName}-form`).classList.add('active');
+                });
+            });
+            
+            // Credit Card Form Handling
+            const creditCardForm = document.getElementById('credit-card-form');
+            const cardNumberInput = document.getElementById('card-number');
+            
+            // Format card number with spaces
+            cardNumberInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\s+/g, '');
+                if (value.length > 0) {
+                    value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
+                }
+                e.target.value = value;
+            });
+            
+            // Format expiry date with slash
+            const expiryDateInput = document.getElementById('expiry-date');
+            expiryDateInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                e.target.value = value;
+            });
+            
+            // Credit Card Form validation
+            creditCardForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+                
+                // Validate card number (simple check for 16 digits)
+                const cardNumber = cardNumberInput.value.replace(/\s/g, '');
+                if (cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
+                    document.getElementById('card-number-error').style.display = 'block';
+                    cardNumberInput.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    document.getElementById('card-number-error').style.display = 'none';
+                    cardNumberInput.classList.remove('invalid');
+                }
+                
+                // Validate card name
+                const cardName = document.getElementById('card-name').value.trim();
+                if (cardName === '') {
+                    document.getElementById('card-name-error').style.display = 'block';
+                    document.getElementById('card-name').classList.add('invalid');
+                    isValid = false;
+                } else {
+                    document.getElementById('card-name-error').style.display = 'none';
+                    document.getElementById('card-name').classList.remove('invalid');
+                }
+                
+                // Validate expiry date
+                const expiryDate = expiryDateInput.value;
+                if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+                    document.getElementById('expiry-date-error').style.display = 'block';
+                    expiryDateInput.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    document.getElementById('expiry-date-error').style.display = 'none';
+                    expiryDateInput.classList.remove('invalid');
+                }
+                
+                // Validate CVV
+                const cvv = document.getElementById('cvv').value;
+                if (cvv.length < 3 || cvv.length > 4 || !/^\d+$/.test(cvv)) {
+                    document.getElementById('cvv-error').style.display = 'block';
+                    document.getElementById('cvv').classList.add('invalid');
+                    isValid = false;
+                } else {
+                    document.getElementById('cvv-error').style.display = 'none';
+                    document.getElementById('cvv').classList.remove('invalid');
+                }
+                
+                // If all valid, process payment
+                if (isValid) {
+                    processCardPayment();
+                }
+            });
+            
+            // PhonePe Form Handling
+            const phonepeForm = document.getElementById('phonepe-form');
+            const upiIdInput = document.getElementById('upi-id');
+            
+            phonepeForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+                
+                // Validate UPI ID
+                const upiId = upiIdInput.value.trim();
+                if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+$/.test(upiId)) {
+                    document.getElementById('upi-id-error').style.display = 'block';
+                    upiIdInput.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    document.getElementById('upi-id-error').style.display = 'none';
+                    upiIdInput.classList.remove('invalid');
+                }
+                
+                if (isValid) {
+                    processPhonePePayment(upiId);
+                }
+            });
+            
+            function processCardPayment() {
+                // In a real application, you would send this to your server
+                alert('Credit card payment processing would happen here!\n\nIn a real app, this would connect to a payment processor.');
+            }
+            
+            function processPhonePePayment(upiId) {
+                // PhonePe payment processing
+                alert(`Initiating PhonePe payment for UPI ID: ${upiId}\n\nIn a real implementation, this would:\n1. Generate a payment request\n2. Redirect to PhonePe app or show a payment link\n3. Handle the payment callback`);
+                
+                // In a real implementation, you would:
+                // 1. Generate a unique transaction ID
+                // 2. Create a payment request to your backend
+                // 3. Your backend would integrate with PhonePe API
+                // 4. Redirect user to PhonePe app or show payment link
+                
+                // For testing purposes, you can use PhonePe's sandbox:
+                // window.location.href = `phonepe://pay?pa=${upiId}&pn=YourMerchantName&mc=YOUR_MERCHANT_CODE&tid=${Date.now()}&tn=PaymentForYourService&am=${amount}&cu=INR`;
+            }
+        });
+    </script>
+</body>
+</html>
